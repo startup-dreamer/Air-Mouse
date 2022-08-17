@@ -1,6 +1,5 @@
 import cv2
 import mediapipe as mp
-from os import *
 import numpy as np
 import autopy
 import pyautogui as pug
