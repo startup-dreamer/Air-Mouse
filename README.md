@@ -7,5 +7,7 @@ In this project we uses opencv python module to take the video frame as input, t
 
 afterward mathmatical calibration to fit change using numpy and finally we perform mouse operation using autopy and pyautogui library 
 
+![image](https://user-images.githubusercontent.com/106421807/185240077-da71c988-dde7-4f46-9fb2-b52cee5f74f0.png)
+
 
 
