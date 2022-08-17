@@ -39,7 +39,6 @@ def findPosition(img):
         bbox = xmin, ymin, xmax, ymax
         cv2.rectangle(img, (bbox[0],bbox[1]),
                               (bbox[2]+20, bbox[3]+20), (213, 235, 21), 2)
-    cv2.waitKey(1)
     return land_mkslst
     
 # returns the length between two points in list of list of landmarks
