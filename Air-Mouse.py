@@ -3,6 +3,7 @@ import mediapipe as mp
 import numpy as np
 import autopy
 import pyautogui as pug
+import time
 
 
 # initializing the mediapipe library and creating Drawing and hands objects
@@ -78,7 +79,7 @@ def fingersUp(land_mkslst):
     return fingers
 
 
-############################################### CODE INITIAliZATION ##################################################
+############################################### CODE INITIALIZATION ##################################################
 
 
 cap = cv2.VideoCapture(0)
@@ -139,6 +140,25 @@ while(1):
                 pug.click(button='left')
     except:
         pass
+
+    # Scroll Down
+    try: 
+        while(fingers[0]==1 and fingers[1]==0 and fingers[2]==0 and fingers[3]==0 and fingers[4]==0):
+            pug.scroll(-100)
+            time.sleep(0.5)
+            break
+    except:
+        pass
+
+    # Scroll Up
+    try:
+        while(fingers[0]==1 and fingers[1]==0 and fingers[2]==1 and fingers[3]==1 and fingers[4]==1):
+            pug.scroll(100)
+            time.sleep(0.5)
+            break
+    except:
+        pass
+
         
     
     cv2.imshow('Air-Mouse', cv2.flip(img, 1))
