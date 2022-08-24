@@ -143,19 +143,19 @@ while(1):
 
     # Scroll Down
     try: 
-        while(fingers[0]==1 and fingers[1]==0 and fingers[2]==0 and fingers[3]==0 and fingers[4]==0):
+        if(fingers[0]==1 and fingers[1]==0 and fingers[2]==0 and fingers[3]==0 and fingers[4]==0):
             pug.scroll(-100)
             time.sleep(0.5)
-            break
+           
     except:
         pass
 
     # Scroll Up
     try:
-        while(fingers[0]==1 and fingers[1]==0 and fingers[2]==1 and fingers[3]==1 and fingers[4]==1):
+        if(fingers[0]==1 and fingers[1]==0 and fingers[2]==1 and fingers[3]==1 and fingers[4]==1):
             pug.scroll(100)
             time.sleep(0.5)
-            break
+            
     except:
         pass
 
