@@ -12,7 +12,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.5) 
 
 # Defining the Global Constant 
-width_cam, Height_cam = 400, 400
+width_cam, Height_cam = 640, 440
 smoothening = 7
 # finding the Width, Height of screen
 width_scr, height_scr = autopy.screen.size()
@@ -141,16 +141,16 @@ while(1):
     except:
         pass
 
-    # Scroll Down
+    # Scroll Down on fist gesture
     try: 
         if(fingers[0]==1 and fingers[1]==0 and fingers[2]==0 and fingers[3]==0 and fingers[4]==0):
             pug.scroll(-100)
             time.sleep(0.5)
-           
+            
     except:
         pass
 
-    # Scroll Up
+    # Scroll Up if Middle Ring & Pinky finger is up
     try:
         if(fingers[0]==1 and fingers[1]==0 and fingers[2]==1 and fingers[3]==1 and fingers[4]==1):
             pug.scroll(100)
