@@ -3,7 +3,7 @@ import mediapipe as mp
 import numpy as np
 import autopy
 import pyautogui as pug
-import time
+import time 
 
 
 # initializing the mediapipe library and creating Drawing and hands objects
@@ -29,7 +29,7 @@ def findPosition(img):
     land_mkslst = []
     if results.multi_hand_landmarks:
         for id, land_mks in enumerate(results.multi_hand_landmarks[0].landmark):
-            height,width,c = img.shape
+            height,width,depth = img.shape
             cx, cy = int(land_mks.x*width), int(land_mks.y*height)
             X_lst.append(cx)
             Y_lst.append(cy)
@@ -44,17 +44,14 @@ def findPosition(img):
     
 # returns the length between two points in list of list of landmarks
 def findDistance(pos1, pos2, land_mkslst):
-    try:
-        x1, y1 = land_mkslst[pos1][1], land_mkslst[pos1][2]
-        x2, y2 = land_mkslst[pos2][1], land_mkslst[pos2][2]     
-        length = pow(abs((pow((x2-x1),2)-pow((y2-y1),2))), 0.5)
-        return length
-    except:
-        pass
-
+    
+    x1, y1 = land_mkslst[pos1][1], land_mkslst[pos1][2]
+    x2, y2 = land_mkslst[pos2][1], land_mkslst[pos2][2]     
+    length = pow(abs((pow((x2-x1),2)-pow((y2-y1),2))), 0.5)
+    return length
+    
     
 # returns a list of 1's or 0's for all five fingers 
-
 def fingersUp(land_mkslst):
     global tipId
     fingers = []
@@ -67,7 +64,7 @@ def fingersUp(land_mkslst):
     except:
         pass
 
-    # if any of four fingers are up it retruns 1 otherwiae returns 0
+    # if any of four fingers are up it retruns 1 otherwiae returns 0 to that finger index
     for i in range(1,5):
         try:
             if land_mkslst[tipId[i]][2] < land_mkslst[tipId[i]-1][2]:
@@ -107,6 +104,7 @@ while(1):
    
     land_mkslst = findPosition(img)
     fingers = fingersUp(land_mkslst)
+    # print(fingers)
 
     # taking x and y co-ordinate Index and Middel finger
     if len(land_mkslst)!=0:
@@ -159,13 +157,15 @@ while(1):
     except:
         pass
 
-        
+    try:
+        if fingers[0]==1 and fingers[1]==1 and fingers[2]==1 and fingers[3]==1 and fingers[4]==0:
+            break 
+    except:
+        pass 
     
     cv2.imshow('Air-Mouse', cv2.flip(img, 1))
     cv2.waitKey(1)
-
-    if cv2.waitKey(10) & 0xFF == ord('q'):
-        break
+    
 
 cap.release()
 cv2.destroyAllWindows()
